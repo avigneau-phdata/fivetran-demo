@@ -36,4 +36,4 @@ terraform.rc
 *.zip
 *.hcl
 *.DS_Store
-run.sh
+run.local.sh
