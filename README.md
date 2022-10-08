@@ -2,7 +2,7 @@
 
 ## Overview
 
-![System architecture diagram](archecture.png)
+![System architecture diagram](./archecture.png)
 
 ## Required Environment Prerequisites
 
