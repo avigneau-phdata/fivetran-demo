@@ -13,3 +13,15 @@ output "db_name" {
 output "role_name" {
   value = snowflake_role.fivetran_autogen_role.name
 }
+
+output "region" {
+  value = data.snowflake_current_account.account.region
+}
+
+output "account_id" {
+  value = data.snowflake_current_account.account.account
+}
+
+output "host" {
+  value = replace(data.snowflake_current_account.account.url, "https://", "")
+}

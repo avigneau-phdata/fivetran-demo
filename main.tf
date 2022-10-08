@@ -1,11 +1,11 @@
 terraform {
-
+  #backend "s3" {
+  #  key    = "slack-fivetran"
+  #}
 }
 
 module "aws" {
     source = "./aws"
-
-    region = var.aws_region
     
     policy_name = "fivetran-lambda-invoke-autogen"
     role_name = "fivetran_lambda_function_autogen"
@@ -26,8 +26,7 @@ module "fivetran" {
     snowflake_destination_schema = "aws_lambda_autogen"
     region = "US"
 
-    snowflake_account = var.snowflake_account_id
-    snowflake_region = var.snowflake_region
+    snowflake_host = module.snowflake.host
     snowflake_db_name = module.snowflake.db_name
     snowflake_role_name = module.snowflake.role_name
     snowflake_user_name = module.snowflake.user_login_name
@@ -35,18 +34,13 @@ module "fivetran" {
 
     lambda_function_name = module.aws.lambda_function_name
     lambda_role_arn = module.aws.role_arn
-    lambda_aws_region = var.aws_region
+    lambda_aws_region = module.aws.region
 
     secrets = "{ \"consumerKey\": \"\", \"consumerSecret\": \"\", \"apiKey\": \"${var.slack_token}\" }"
 }
 
 module "snowflake" {
     source = "./snowflake"
-
-    region = var.snowflake_region
-    account_id = var.snowflake_account_id
-    admin_role = var.snowflake_role
-    admin_warehouse_id = var.snowflake_warehouse_id
 
     db_name = "FIVETRAN_AUTOGEN"
     db_privileges = [ "USAGE", "MODIFY", "CREATE SCHEMA" ]

@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "snowflake" {
-  account = var.account_id
-  region = "${var.region}.aws"
-
-  role = var.admin_role
-  warehouse = var.admin_warehouse_id
+data "snowflake_current_account" "account" {
+  
 }

@@ -27,19 +27,3 @@ variable "user_name" {
 variable "role_name" {
   type      = string
 }
-
-variable "admin_role" {
-  type      = string
-}
-
-variable "admin_warehouse_id" {
-  type      = string
-}
-
-variable "account_id" {
-  type      = string
-}
-
-variable "region" {
-  type      = string
-}

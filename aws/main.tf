@@ -7,6 +7,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
+data "aws_region" "region" {
+
 }

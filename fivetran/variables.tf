@@ -15,11 +15,7 @@ variable "region" {
   }
 }
 
-variable "snowflake_account" {
-  type    = string
-}
-
-variable "snowflake_region" {
+variable "snowflake_host" {
   type    = string
 }
 

@@ -8,12 +8,13 @@ resource "fivetran_destination" "dest" {
     run_setup_tests     = "true"
 
     config {
-        host        = "${var.snowflake_account}.${var.snowflake_region}.aws.snowflakecomputing.com"
-        port        = 443
-        user        = var.snowflake_user_name
-        password    = var.snowflake_password
-        auth        = "password"
-        database    = var.snowflake_db_name
-        role        = var.snowflake_role_name
+        host            = var.snowflake_host
+        port            = 443
+        user            = var.snowflake_user_name
+        password        = var.snowflake_password
+        auth            = "PASSWORD"
+        database        = var.snowflake_db_name
+        role            = var.snowflake_role_name
+        connection_type = "Directly"
     }
 }
