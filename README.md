@@ -26,7 +26,7 @@ Update the `lambda_function.py` python script with the code that should be deplo
 Update the values in `main.tf` if desired to change the names of the infrastructure that will be created
 
 ### Environment Configuration
-Create a file in the root directory of this repository named `.env.` and paste the following into it:
+Create a file in the root directory of this repository named `.env` and paste the following into it:
 
 ```
 # These are all dummy values - replace with your own
