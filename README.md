@@ -2,6 +2,20 @@
 
 ## Overview
 
+![System architecture diagram](archecture.png)
+
+## Required Environment Prerequisites
+
+- Must have an AWS account user and associated access key credentials with permissions to:
+    - Create and modify lambda functions
+    - Create and modify IAM roles and policies
+    - Create S3 buckets
+    - Write to a pre-defined terraform state S3 bucket (if remote terraform state is desired)
+- Must have a Snowflake account with a Snowflake user (and password) with permissions:
+    - USAGE on a warehouse for executing queries
+    - Granted a role that has permissions to create users/warehouses/databases
+- Must have a Fivetran account and an associated API key/secret pair
+
 ## Usage
 
 ### Lambda Code
