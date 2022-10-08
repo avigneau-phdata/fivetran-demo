@@ -15,6 +15,7 @@
     - USAGE on a warehouse for executing queries
     - Granted a role that has permissions to create users/warehouses/databases
 - Must have a Fivetran account and an associated API key/secret pair
+- Must have a Slack account and an associated token with permissions to the resources that will be pulled by the lambda function
 
 ## Usage
 
