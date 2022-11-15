@@ -20,7 +20,7 @@
 ## Usage
 
 ### Lambda Code
-Update the `lambda_function.py` python script with the code that should be deployed to the lambda function
+Update the `lambda_function.py` python script with the code that will be used to query slack data and pass it back to Fivetran
 
 ### Infrastructure Naming
 Update the values in `main.tf` if desired to change the names of the infrastructure that will be created
