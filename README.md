@@ -19,7 +19,7 @@
 
 ## Usage
 
-This is currently meant to be executed locally using the `run.local.sh`.  To adapt this to running in a CICD environment, variables and secrets would need to be passed into the environment using the CICD tool instead of the `.env` file. 
+This is currently meant to be executed locally using the `run.local.sh`.  To adapt this to running in a CICD environment, variables, secrets, and terraform state would need to be managed by the CICD tool instead of using the `.env` file. 
 
 ### Lambda Code
 Update the `lambda_function.py` python script with the code that will be used to query slack data and pass it back to Fivetran
