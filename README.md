@@ -30,7 +30,7 @@ Update the values in `main.tf` if desired to change the names of the infrastruct
 ### Environment Configuration
 Create a file in the root directory of this repository named `.env` and paste the following into it:
 
-```
+```console
 # These are all dummy values - replace with your own
 
 # Optional depending on whether you want to use remote state management or not
