@@ -22,7 +22,7 @@ while true; do
 done
 
 while true; do
-    read -p "Do you wish to run the planning phase? " yn
+    read -p "Do you wish to run the planning phase? (you must do this in order to apply) " yn
     case $yn in
         [Yy]* ) terraform plan -out=tfplan 
 
