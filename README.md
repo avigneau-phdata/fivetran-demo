@@ -33,6 +33,7 @@ Create a file in the root directory of this repository named `.env` and paste th
 ```
 # These are all dummy values - replace with your own
 
+# Optional depending on whether you want to use remote state management or not
 TF_STATE_BUCKET="bucket-name"
 
 AWS_ACCESS_KEY_ID="key-id"
