@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+.terraform/
 
 # .tfstate files
 *.tfstate
@@ -37,3 +38,9 @@ terraform.rc
 *.hcl
 *.DS_Store
 *.env
+
+**tmp/
+venv/
+
+aws/lambda/*
+!aws/lambda/function.py

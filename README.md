@@ -11,21 +11,32 @@
     - Create and modify IAM roles and policies
     - Create S3 buckets
     - Write to a pre-defined terraform state S3 bucket (if remote terraform state is desired)
-- Must have a Snowflake account with a Snowflake user (and password) with permissions:
+- Must have a Snowflake account with a Snowflake user (and password) with permissions (see sample setup script below):
     - USAGE on a warehouse for executing queries
     - Granted a role that has permissions to create users/warehouses/databases
 - Must have a Fivetran account and an associated API key/secret pair
 - Must have a Slack account and an associated token with permissions to the resources that will be pulled by the lambda function
 
+### Sample Snowflake Setup Script
+
+```sql
+CREATE USER TERRAFORM_USER PASSWORD='<password>';
+CREATE ROLE TERRAFORM_ROLE;
+CREATE WAREHOUSE TERRAFORM_WH;
+GRANT ROLE ACCOUNTADMIN TO ROLE TERRAFORM_ROLE;
+GRANT ROLE TERRAFORM_ROLE TO USER TERRAFORM_USER;
+GRANT ALL PRIVILEGES ON WAREHOUSE TERRAFORM_WH TO ROLE TERRAFORM_ROLE;
+```
+
 ## Usage
 
-This is currently meant to be executed locally using the `run.local.sh`.  To adapt this to running in a CICD environment - variables, secrets, and terraform state would need to be managed by the CICD tool instead of using the `.env` file. 
+This is currently meant to be executed locally using the [run.local.sh](./run.local.sh).  To adapt this to running in a CICD environment - variables, secrets, and terraform state would need to be managed by the CICD tool instead of using the `.env` file. 
 
 ### Lambda Code
-Update the `lambda_function.py` python script with the code that will be used to query slack data and pass it back to Fivetran
+Update the [aws/lambda/function.py](./aws/lambda/function.py) python script with the code that will be used to query slack data and pass it back to Fivetran
 
 ### Infrastructure Naming
-Update the values in `main.tf` if desired to change the names of the infrastructure that will be created
+Update the values in [main.tf](./main.tf) if desired to change the names of the infrastructure that will be created
 
 ### Environment Configuration
 Create a file in the root directory of this repository named `.env` and paste the following into it:
@@ -54,4 +65,5 @@ SLACK_TOKEN="token"
 ```
 
 ### Execution and Deployment
-Execute the `run.local.sh` script and follow the prompts to deploy the infrastructure
+Execute the [run.local.sh](./run.local.sh) script and follow the prompts to deploy the infrastructure
+

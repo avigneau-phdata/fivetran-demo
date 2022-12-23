@@ -11,9 +11,7 @@ module "aws" {
     role_name = "fivetran_lambda_function_autogen"
     bucket_name = "slack-user-data-autogen"
     lambda_function_name = "slack_data_autogen"
-    lambda_handler = "lambda_function.lambda_handler"
     lambda_runtime = "python3.9"
-    lambda_package = "code.zip"
     fivetran_account_id = "834469178297"
 
     fivetran_group_id = module.fivetran.group_id

@@ -4,8 +4,10 @@ export $(grep -v '^#' .env | xargs)
 
 export TF_VAR_slack_token=$SLACK_TOKEN
 
-zip code.zip lambda_function.py
+# Install the slack_sdk dependency alongside the lambda function code before packaging
+pip install --target ./aws/lambda --upgrade slack_sdk
 
+# Init remote state config if desired
 while true; do
     read -p "Do you wish to init with remote state configuration? " yn
     case $yn in
@@ -21,6 +23,7 @@ while true; do
     esac
 done
 
+# Plan and apply the terraform code
 while true; do
     read -p "Do you wish to run the planning phase? (you must do this in order to apply) " yn
     case $yn in
@@ -42,5 +45,3 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-
-rm -f code.zip
