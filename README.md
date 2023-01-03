@@ -11,7 +11,7 @@
     - Create and modify IAM roles and policies
     - Create S3 buckets
     - Write to a pre-defined terraform state S3 bucket (if remote terraform state is desired)
-- Must have a Snowflake account with a Snowflake user (and password) with permissions (see sample setup script below):
+- Must have a Snowflake account with a Snowflake user (and password) with permissions (see sample setup script):
     - USAGE on a warehouse for executing queries
     - Granted a role that has permissions to create users/warehouses/databases
 - Must have a Fivetran account and an associated API key/secret pair
