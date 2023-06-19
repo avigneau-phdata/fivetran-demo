@@ -1,4 +1,4 @@
-# Slack to Snowflake Fivetran Pipeline Generator
+# Custom Source to Snowflake Pipeline Generator
 
 ## Overview
 

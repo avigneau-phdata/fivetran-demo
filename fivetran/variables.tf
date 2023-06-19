@@ -1,13 +1,13 @@
 variable "group_name" {
-  type      = string
+  type = string
 }
 
 variable "snowflake_destination_schema" {
-  type      = string
+  type = string
 }
 
 variable "region" {
-  type    = string
+  type = string
 
   validation {
     condition     = contains(["AWS_US_EAST_1", "US"], var.region)
@@ -16,37 +16,37 @@ variable "region" {
 }
 
 variable "snowflake_host" {
-  type    = string
+  type = string
 }
 
 variable "snowflake_user_name" {
-  type    = string
+  type = string
 }
 
 variable "snowflake_password" {
-  type    = string
+  type = string
 }
 
 variable "snowflake_db_name" {
-  type    = string
+  type = string
 }
 
 variable "snowflake_role_name" {
-  type    = string
+  type = string
 }
 
 variable "lambda_function_name" {
-  type    = string
+  type = string
 }
 
 variable "lambda_role_arn" {
-  type    = string
+  type = string
 }
 
 variable "lambda_aws_region" {
-  type    = string
+  type = string
 }
 
 variable "secrets" {
-  type    = string 
+  type = string
 }
