@@ -9,19 +9,6 @@ resource "aws_iam_policy" "fivetran_lambda_invoke" {
             "Effect": "Allow",
             "Action": "lambda:InvokeFunction",
             "Resource": "*"
-        },
-        {
-            "Sid": "AccessS3bucket",
-            "Effect": "Allow",
-            "Action": [
-                "s3:Put*",
-                "s3:Get*",
-                "s3:Delete*"
-            ],
-            "Resource": [
-                "${aws_s3_bucket.slack_user_data_bucket.arn}",
-                "${aws_s3_bucket.slack_user_data_bucket.arn}/*"
-            ]
         }
     ]})
 }

@@ -44,3 +44,6 @@ venv/
 
 aws/lambda/*
 !aws/lambda/function.py
+!aws/lambda/candle.py
+!aws/lambda/requirements.txt
+!aws/lambda/symbols.json

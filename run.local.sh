@@ -2,7 +2,7 @@
 
 export $(grep -v '^#' .env | xargs)
 
-export TF_VAR_slack_token=$SLACK_TOKEN
+export TF_VAR_api_token=$SLACK_TOKEN
 
 # Install the slack_sdk dependency alongside the lambda function code before packaging
 pip install --target ./aws/lambda --upgrade slack_sdk

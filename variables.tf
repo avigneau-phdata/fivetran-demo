@@ -1,3 +1,7 @@
-variable "slack_token" {
+variable "finnhub_api_key" {
+  
+}
+
+variable "snowflake_password" {
   
 }

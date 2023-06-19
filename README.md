@@ -11,21 +11,19 @@
     - Create and modify IAM roles and policies
     - Create S3 buckets
     - Write to a pre-defined terraform state S3 bucket (if remote terraform state is desired)
-- Must have a Snowflake account with a Snowflake user (and password) with permissions (see sample setup script):
-    - USAGE on a warehouse for executing queries
-    - Granted a role that has permissions to create users/warehouses/databases
+- Must have a Snowflake account with a Fivetran database and user granted appropriate permissions (see sample setup script):
 - Must have a Fivetran account and an associated API key/secret pair
-- Must have a Slack account and an associated token with permissions to the resources that will be pulled by the lambda function
 
 ### Sample Snowflake Setup Script
 
 ```sql
-CREATE USER TERRAFORM_USER PASSWORD='<password>';
-CREATE ROLE TERRAFORM_ROLE;
-CREATE WAREHOUSE TERRAFORM_WH;
-GRANT ROLE ACCOUNTADMIN TO ROLE TERRAFORM_ROLE;
-GRANT ROLE TERRAFORM_ROLE TO USER TERRAFORM_USER;
-GRANT ALL PRIVILEGES ON WAREHOUSE TERRAFORM_WH TO ROLE TERRAFORM_ROLE;
+create database if not exists FIVETRAN_DB;
+create warehouse if not exists FIVETRAN_WH with warehouse_size='XSMALL';
+create user FIVETRAN_USER password='<password>';
+create role FIVETRAN_ROLE;
+grant ALL PRIVILEGES on database FIVETRAN_DB to role FIVETRAN_ROLE;
+grant USAGE on warehouse FIVETRAN_WH to role FIVETRAN_ROLE;
+grant role FIVETRAN_ROLE to user FIVETRAN_USER;
 ```
 
 ## Usage
@@ -61,7 +59,7 @@ SNOWFLAKE_REGION="us-east-2.aws"
 SNOWFLAKE_WAREHOUSE="TERRAFORM_WH"
 SNOWFLAKE_ROLE="ACCOUNTADMIN"
 
-SLACK_TOKEN="token"
+API_TOKEN="token"
 ```
 
 ### Execution and Deployment

@@ -21,7 +21,3 @@ variable "lambda_function_name" {
 variable "lambda_runtime" {
   type  = string
 }
-
-variable "bucket_name" {
-  type  = string
-}
