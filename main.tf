@@ -7,9 +7,8 @@ terraform {
 module "aws" {
   source = "./aws"
 
-  policy_name          = "fivetran-lambda-invoke-autogen"
-  role_name            = "fivetran_lambda_function_autogen"
-  bucket_name          = "slack-user-data-autogen"
+  policy_name          = "fivetran-lambda-invoke"
+  role_name            = "fivetran_lambda_function"
   lambda_function_name = "stock_candles_lambda"
   lambda_runtime       = "python3.9"
   fivetran_account_id  = "834469178297"
