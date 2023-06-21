@@ -16,10 +16,16 @@ def add_day(dt: str) -> str:
 
     return new_date.strftime("%Y-%m-%d")
 
-def dt_gte_today(dt: str) -> bool:
-    current_date = datetime.now().strftime('%Y-%m-%d')
+def last_week(dt: str) -> str:
+    date = datetime.strptime(dt, "%Y-%m-%d")
+    new_date = date + timedelta(days=-7)
 
-    return dt >= current_date
+    return new_date.strftime("%Y-%m-%d")
+
+def dt_gte_last_week(dt: str) -> bool:
+    last_week_date = last_week(datetime.now().strftime('%Y-%m-%d'))
+
+    return dt >= last_week_date
 
 def dt_to_unix(dt: str) -> Tuple[int, int]:
     date = datetime.strptime(dt, "%Y-%m-%d")
@@ -36,7 +42,7 @@ def eval_state(req_state: dict) -> Tuple[str, bool]:
 
     if req_state.get("cursor"):
         state["cursor"] = add_day(req_state.get("cursor"))
-        if dt_gte_today(state["cursor"]):
+        if dt_gte_last_week(state["cursor"]):
             hasMore = False
     
     return state, hasMore

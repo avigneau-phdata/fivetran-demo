@@ -28,40 +28,10 @@ grant role FIVETRAN_ROLE to user FIVETRAN_USER;
 
 ## Usage
 
-This is currently meant to be executed locally using the [run.local.sh](./run.local.sh).  To adapt this to running in a CICD environment - variables, secrets, and terraform state would need to be managed by the CICD tool instead of using the `.env` file. 
+
 
 ### Lambda Code
-Update the [aws/lambda/function.py](./aws/lambda/function.py) python script with the code that will be used to query slack data and pass it back to Fivetran
+Update the code in the location [aws/lambda](./aws/lambda/). The code is used to query API data and pass it back to Fivetran.
 
 ### Infrastructure Naming
 Update the values in [main.tf](./main.tf) if desired to change the names of the infrastructure that will be created
-
-### Environment Configuration
-Create a file in the root directory of this repository named `.env` and paste the following into it:
-
-```console
-# These are all dummy values - replace with your own
-
-# Optional depending on whether you want to use remote state management or not
-TF_STATE_BUCKET="bucket-name"
-
-AWS_ACCESS_KEY_ID="key-id"
-AWS_SECRET_ACCESS_KEY="access-key"
-AWS_REGION="us-east-1"
-
-FIVETRAN_APIKEY="api-key"
-FIVETRAN_APISECRET="secret"
-
-SNOWFLAKE_USER="TERRAFORM_USER"
-SNOWFLAKE_PASSWORD="password"
-SNOWFLAKE_ACCOUNT="xxxxxx"
-SNOWFLAKE_REGION="us-east-2.aws"
-SNOWFLAKE_WAREHOUSE="TERRAFORM_WH"
-SNOWFLAKE_ROLE="ACCOUNTADMIN"
-
-API_TOKEN="token"
-```
-
-### Execution and Deployment
-Execute the [run.local.sh](./run.local.sh) script and follow the prompts to deploy the infrastructure
-
