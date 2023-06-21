@@ -20,7 +20,7 @@
 create database if not exists FIVETRAN_DB;
 create warehouse if not exists FIVETRAN_WH with warehouse_size='XSMALL';
 create role FIVETRAN_ROLE;
-create user FIVETRAN_USER password='<password>' default_warehouse=FIVETRAN_WH default_role=FIVETRAN_ROLE;
+create user FIVETRAN_USER password='%password%' default_warehouse=FIVETRAN_WH default_role=FIVETRAN_ROLE;
 grant ALL PRIVILEGES on database FIVETRAN_DB to role FIVETRAN_ROLE;
 grant USAGE on warehouse FIVETRAN_WH to role FIVETRAN_ROLE;
 grant role FIVETRAN_ROLE to user FIVETRAN_USER;
