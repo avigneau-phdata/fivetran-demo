@@ -1,7 +1,5 @@
 terraform {
-  #backend "s3" {
-  #  key    = "slack-fivetran"
-  #}
+  backend "s3" {}
 }
 
 module "aws" {
