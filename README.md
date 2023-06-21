@@ -4,6 +4,8 @@
 
 ![System architecture diagram](./architecture.png)
 
+Data is being pulled from the Finnhub API for [stock candles](https://finnhub.io/docs/api/stock-candles) data, up through the current date minus one week (because of when the data is updated in the Finnhub API)
+
 ## Required Environment Prerequisites
 
 - Must have an AWS account user and associated access key credentials with permissions to:
