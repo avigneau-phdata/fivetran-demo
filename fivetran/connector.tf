@@ -1,5 +1,5 @@
 resource "fivetran_connector" "lambda_connector" {
-  group_id          = fivetran_group.group_id
+  group_id          = fivetran_group.group.id
   service           = "aws_lambda"
   sync_frequency    = 1440
   daily_sync_time   = "14:00"
