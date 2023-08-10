@@ -1,7 +1,9 @@
+/*
 terraform {
   backend "s3" {}
 }
 
+*/
 module "aws" {
   source = "./aws"
 
@@ -17,15 +19,15 @@ module "aws" {
 module "fivetran" {
   source = "./fivetran"
 
-  group_name                   = "Demo_Snowflake"
+  group_name                   = "Fivetran_Bootcamp"
   snowflake_destination_schema = "stocks"
   region                       = "US"
 
-  snowflake_host      = "lf41672.us-east-2.aws.snowflakecomputing.com"
-  snowflake_db_name   = "FIVETRAN_DB"
-  snowflake_role_name = "FIVETRAN_ROLE"
-  snowflake_user_name = "FIVETRAN_USER"
-  snowflake_password  = var.snowflake_password
+  snowflake_host      = "lga76011.us-east-1.snowflakecomputing.com"
+  snowflake_db_name   = "FIVETRAN_BOOTCAMP"
+  snowflake_role_name = "FIVETRAN_BOOTCAMP_ROLE"
+  snowflake_user_name = "FIVETRAN_BOOTCAMP_USER"
+  snowflake_password  = ""
 
   lambda_function_name = module.aws.lambda_function_name
   lambda_role_arn      = module.aws.role_arn
