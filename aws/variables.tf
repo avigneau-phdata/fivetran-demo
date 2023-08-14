@@ -1,15 +1,3 @@
-variable "policy_name" {
-  type = string
-}
-
-variable "role_name" {
-  type = string
-}
-
-variable "fivetran_account_id" {
-  type = string
-}
-
 variable "fivetran_group_id" {
   type = string
 }

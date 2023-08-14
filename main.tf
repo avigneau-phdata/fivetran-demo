@@ -1,17 +1,11 @@
-/*
-terraform {
-  backend "s3" {}
-}
 
-*/
 module "aws" {
   source = "./aws"
 
-  policy_name          = "fivetran_lambda_invoke"
-  role_name            = "iam_for_lambda"
-  lambda_function_name = "stock_candles_lambda"
+# fill in the lambda_function_name here:
+
+  lambda_function_name = "stock_candles_lambda_av"
   lambda_runtime       = "python3.9"
-  fivetran_account_id  = "834469178297"
 
   fivetran_group_id = module.fivetran.group_id
 }
@@ -19,8 +13,10 @@ module "aws" {
 module "fivetran" {
   source = "./fivetran"
 
+# fill in the name of your snowflake_destination_schema here:
+
   group_name                   = "permitted_chuck"
-  snowflake_destination_schema = "stocks"
+  snowflake_destination_schema = "stocks_av" 
   region                       = "US"
 
   snowflake_host      = "lga76011.us-east-1.snowflakecomputing.com"
