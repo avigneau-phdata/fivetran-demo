@@ -24,9 +24,8 @@ jobs:
       AWS_REGION: "us-east-2"
       FIVETRAN_APIKEY: ${{ secrets.FIVETRAN_APIKEY }}
       FIVETRAN_APISECRET: ${{ secrets.FIVETRAN_APISECRET }}
-      TF_VAR_finnhub_api_key: ${{ secrets.FINNHUB_API_KEY }}
       TF_VAR_snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
-      TF_STATE_BUCKET: 185632147706-terraform-state
+      TF_STATE_BUCKET: "545053092614-terraform-state"
 
     steps:
     - name: Checkout
@@ -44,6 +43,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
+      working_directory: ./${{ github.branch.current }}
       run: |
         terraform init \
           -backend-config="bucket=${TF_STATE_BUCKET}" \
@@ -51,11 +51,14 @@ jobs:
           -backend-config="region=${AWS_REGION}"
 
     - name: Terraform Format
+      working_directory: ./${{ github.branch.current }}
       run: terraform fmt -check
 
     - name: Terraform Plan
+      working_directory: ./${{ github.branch.current }}
       run: terraform plan -input=false
 
     - name: Terraform Apply
+      working_directory: ./${{ github.branch.current }}
       # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
