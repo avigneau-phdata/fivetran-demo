@@ -1,4 +1,4 @@
-variable "group_name" {
+variable "group_id" {
   type = string
 }
 
@@ -15,23 +15,11 @@ variable "region" {
   }
 }
 
-variable "snowflake_host" {
+variable "bootcamp_role_arn" {
   type = string
 }
 
-variable "snowflake_user_name" {
-  type = string
-}
-
-variable "snowflake_password" {
-  type = string
-}
-
-variable "snowflake_db_name" {
-  type = string
-}
-
-variable "snowflake_role_name" {
+variable "entry_point_ref" {
   type = string
 }
 
@@ -39,11 +27,11 @@ variable "lambda_function_name" {
   type = string
 }
 
-variable "lambda_role_arn" {
+variable "lambda_runtime" {
   type = string
 }
 
-variable "lambda_aws_region" {
+variable "lambda_code_folder" {
   type = string
 }
 
