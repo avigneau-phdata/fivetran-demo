@@ -37,7 +37,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install Lambda Dependencies
-      run: pip install --target ./aws/lambda --upgrade -r ./aws/lambda/requirements.txt
+      run: pip install --target ./aws/lambda --upgrade -r ./avigneau-test/lambda/requirements.txt
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
