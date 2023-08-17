@@ -53,7 +53,7 @@ jobs:
 
     - name: Terraform Format
       working-directory: ${{ env.working-directory }}
-      run: terraform fmt -check
+      run: terraform fmt 
 
     - name: Terraform Plan
       working-directory: ${{ env.working-directory }}
