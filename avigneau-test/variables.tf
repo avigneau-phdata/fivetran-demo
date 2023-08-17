@@ -34,7 +34,3 @@ variable "lambda_runtime" {
 variable "lambda_code_folder" {
   type = string
 }
-
-variable "secrets" {
-  type = string
-}
