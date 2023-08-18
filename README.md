@@ -1,6 +1,7 @@
 # Custom Source to Snowflake Pipeline Generator
 
-## Overview
+## Overview  
+
 
 ![System architecture diagram](./architecture.png)
 
