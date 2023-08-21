@@ -2,7 +2,7 @@ name: 'Deploy'
 
 on:
   push:
-    branches: [ "avigneau-test" ]
+    branches-ignore: main
   pull_request:
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install Lambda Dependencies
-      run: pip3 install --target ./avigneau-test/lambda --upgrade -r ./avigneau-test/lambda/requirements.txt
+      run: pip3 install --target ${{ env.working-directory }}/lambda --upgrade -r ${{ env.working-directory }}/lambda/requirements.txt
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
