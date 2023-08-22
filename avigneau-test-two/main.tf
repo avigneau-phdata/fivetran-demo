@@ -5,7 +5,6 @@ terraform {
     region = "us-east-1"
   }
 
-
   required_providers {
     fivetran = {
       source  = "fivetran/fivetran"
