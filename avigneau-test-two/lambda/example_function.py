@@ -11,8 +11,12 @@ def lambda_handler(request, context):
         "state": {},
         "insert": {
             "candles": [
-            {"id":1, "amount": 100},
-            {"id":3, "amount": 50}
+            {"id":1, "product":"regular", "amount": 100},
+            {"id":2, "product":"premium", "amount": 50},
+            {"id":3, "product":"regular", "amount": 200},
+            {"id":4, "product":"super", "amount": 25},
+            {"id":5, "product":"regular", "amount": 125},
+            {"id":6, "product":"mini", "amount": 75}
         ]},
         "hasMore" : False
     }
