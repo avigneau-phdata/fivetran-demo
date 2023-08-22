@@ -26,7 +26,7 @@ jobs:
       FIVETRAN_APISECRET: ${{ secrets.FIVETRAN_APISECRET }}
       TF_VAR_snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
       TF_STATE_BUCKET: "545053092614-terraform-state"
-      working-directory: "./avigneau-test/"
+      working-directory: "./${{ github.ref }}/"
 
     steps:
     - name: Checkout
@@ -38,7 +38,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install Lambda Dependencies
-      run: pip3 install --target ${{ env.working-directory }}/lambda --upgrade -r ${{ env.working-directory }}/lambda/requirements.txt
+      run: pip3 install --target ${{ env.working-directory }}lambda --upgrade -r ${{ env.working-directory }}lambda/requirements.txt
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
