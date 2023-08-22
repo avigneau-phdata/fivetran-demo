@@ -4,6 +4,8 @@ terraform {
     key    = "terraform_state-test"
     region = "us-east-1"
   }
+
+
   required_providers {
     fivetran = {
       source  = "fivetran/fivetran"
