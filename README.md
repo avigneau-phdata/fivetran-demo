@@ -2,42 +2,43 @@
 
 ## Overview  
 
-
 ![System architecture diagram](./architecture.png)
 
-Data is being pulled from the Finnhub API for [stock candles](https://finnhub.io/docs/api/stock-candles) data
+## Instructions (basic deployment)
+- Pull "main" repo into local environment
+- Name your "test" subfolder the same name as your branch name, this is important because the deploy.yml is expecting this naming convention
 
-- Pulls it one day at a time up through the current date minus one week (because of when the data is updated in the Finnhub API)
-- Will run every 24 hours and only pull net new data for that time period (unless a historical resync is triggered)
 
 ## Required Environment Prerequisites
 
 - Must have an AWS account user and associated access key credentials with permissions to:
-    - Create and modify lambda functions
-    - Create and modify IAM roles and policies
-    - Create S3 buckets
-    - Write to a pre-defined terraform state S3 bucket (if remote terraform state is desired)
-- Must have a Snowflake account with a Fivetran database and user granted appropriate permissions (see sample setup script):
+    - Write to a pre-defined terraform state S3 bucket 545053092614-terraform-state (if remote terraform state is desired)
+- Must have a Snowflake account with access to the "Fivetran_Bootcamp_Role", which will give you access to the "FIVETRAN_BOOTCAMP" database.
 - Must have a Fivetran account and an associated API key/secret pair
 
-### Sample Snowflake Setup Script
-
-```sql
-create database if not exists FIVETRAN_DB;
-create warehouse if not exists FIVETRAN_WH with warehouse_size='XSMALL';
-create role FIVETRAN_ROLE;
-create user FIVETRAN_USER password='%password%' default_warehouse=FIVETRAN_WH default_role=FIVETRAN_ROLE;
-grant ALL PRIVILEGES on database FIVETRAN_DB to role FIVETRAN_ROLE;
-grant USAGE on warehouse FIVETRAN_WH to role FIVETRAN_ROLE;
-grant role FIVETRAN_ROLE to user FIVETRAN_USER;
-```
 
 ## Usage
-
+- Local testing:
+    - For running, the code locally, you will need to open a terminal and export the following variables in your environment
+        - AWS_ACCESS_KEY_ID 
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_REGION
+        - FIVETRAN_APIKEY
+        - FIVETRAN_APISECRET
+    - After this, run the 'terraform' commands listed in the deploy.yml
+- Remote testing:
+    - Once all code is ready, commit changes and push remote branch.  Note: If you have already tested the code locally, you'll need to remove the lambda function in AWS as a new terraform state file will be created and it will error when it detects the existing lambda.
 
 
 ### Lambda Code
-Update the code in the location [aws/lambda](./aws/lambda/). The code is used to query API data and pass it back to Fivetran.
+- Out of the box, the provided lambda code will run and create some sample records in the target Snowflake schema you declare.  You can also update the code in the location [aws/lambda](./aws/lambda/) if you want to query API data and pass it back to Fivetran.
 
 ### Infrastructure Naming
-Update the values in [main.tf](./main.tf) if desired to change the names of the infrastructure that will be created
+- Update the following values in [main.tf](./main.tf) file.  This will be to store your state file when you push your code and Github Actions runs your pipeline:
+    - backend "s3" 
+        - key  = [name of the branch you create]
+
+- Update the following variables in the [test.tfvars](./test.tfvars) file:
+    - lambda_function_name         = [name of your lambda function that will show up in AWS lambda page]
+    - snowflake_destination_schema = [name of the snowflake schema you are writing to]
+
