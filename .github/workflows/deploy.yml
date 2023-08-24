@@ -2,7 +2,7 @@ name: 'Deploy'
 
 on:
   push:
-    branches: [ "main" ]
+    branches-ignore: main
   pull_request:
 
 permissions:
@@ -21,11 +21,12 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: "us-east-2"
+      AWS_REGION: "us-east-1"
       FIVETRAN_APIKEY: ${{ secrets.FIVETRAN_APIKEY }}
       FIVETRAN_APISECRET: ${{ secrets.FIVETRAN_APISECRET }}
       TF_VAR_snowflake_password: ${{ secrets.SNOWFLAKE_PASSWORD }}
       TF_STATE_BUCKET: "545053092614-terraform-state"
+      working-directory: "./${{ github.ref_name }}/"
 
     steps:
     - name: Checkout
@@ -37,13 +38,13 @@ jobs:
         python-version: '3.9'
 
     - name: Install Lambda Dependencies
-      run: pip install --target ./aws/lambda --upgrade -r ./aws/lambda/requirements.txt
+      run: pip3 install --target ${{ env.working-directory }}lambda --upgrade -r ${{ env.working-directory }}lambda/requirements.txt
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      working_directory: ./${{ github.branch.current }}
+      working-directory: ${{ env.working-directory }}
       run: |
         terraform init \
           -backend-config="bucket=${TF_STATE_BUCKET}" \
@@ -51,14 +52,15 @@ jobs:
           -backend-config="region=${AWS_REGION}"
 
     - name: Terraform Format
-      working_directory: ./${{ github.branch.current }}
-      run: terraform fmt -check
+      working-directory: ${{ env.working-directory }}
+      run: terraform fmt 
 
     - name: Terraform Plan
-      working_directory: ./${{ github.branch.current }}
-      run: terraform plan -input=false
+      working-directory: ${{ env.working-directory }}
+      run: terraform plan -input=false -var-file="test.tfvars"
 
     - name: Terraform Apply
-      working_directory: ./${{ github.branch.current }}
+      working-directory: ${{ env.working-directory }}
       # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false -var-file="test.tfvars"
+ 

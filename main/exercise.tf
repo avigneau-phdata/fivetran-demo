@@ -14,8 +14,7 @@ resource "fivetran_connector" "lambda_connector" {
   config {
     function = aws_lambda_function.lambda_function.function_name
     role_arn = var.bootcamp_role_arn
-    region   = var.region
-    secrets  = var.secrets
+    region   = "us-east-1"
   }
 }
 
