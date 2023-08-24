@@ -1,9 +1,5 @@
 # Custom Source to Snowflake Pipeline Generator
 
-## Overview  
-
-![System architecture diagram](./architecture.png)
-
 ## Instructions (basic deployment)
 - Pull "main" repo into local environment
 - Name your "test" subfolder the same name as your branch name, this is important because the deploy.yml is expecting this naming convention
