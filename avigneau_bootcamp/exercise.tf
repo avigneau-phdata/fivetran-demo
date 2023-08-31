@@ -8,7 +8,7 @@ resource "fivetran_connector" "lambda_connector" {
   run_setup_tests   = true
 
   destination_schema {
-    name = var.snowflake_destination_schema
+    name = var.username
   }
 
   config {
@@ -20,7 +20,7 @@ resource "fivetran_connector" "lambda_connector" {
 
 resource "aws_lambda_function" "lambda_function" {
   filename      = data.archive_file.lambda_zip.output_path
-  function_name = var.lambda_function_name
+  function_name = var.username
   role          = var.bootcamp_role_arn
   handler       = var.entry_point_ref
 

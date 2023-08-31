@@ -1,4 +1,7 @@
 terraform {
+  variable "username" {
+    
+  }
   backend "s3" {
     bucket = "545053092614-terraform-state"
     key    = "${var.username}"
