@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "545053092614-terraform-state"
-    key    = [insert this here]
+    key    = "${var.username}"
     region = "us-east-1"
   }
 
