@@ -2,10 +2,6 @@ variable "group_id" {
   type = string
 }
 
-variable "snowflake_destination_schema" {
-  type = string
-}
-
 variable "region" {
   type = string
 
@@ -23,14 +19,14 @@ variable "entry_point_ref" {
   type = string
 }
 
-variable "lambda_function_name" {
-  type = string
-}
-
 variable "lambda_runtime" {
   type = string
 }
 
 variable "lambda_code_folder" {
+  type = string
+}
+
+variable "username" {
   type = string
 }
